@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html,body{
+  height:100%;
+ }
+ 
+ .button{
+  background-color: #f06c5c;
+  border-radius: 30px;
+  font:white;
+  font-weight: bold;
+  font-size: large;
+  padding: 10px 30px;
+ }
+
+
+ /*COMPONENTS*/
+
+ /*HERO*/
+
+
+ /*FEATURED*/
+
+ .featuredContainer{
+  background-color: #fcd7d2;
+ }
+
+ /* CARD */
+.flip-card {
+  color:#3b5b7e;
+  background-color: transparent;
+  width: 300px;
+  height: 400px;
+  perspective: 1000px; /* This is required for the 3D effect */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cross-icon{
+  color:#f06c5c;
+}
+/* 
+.card-content{
+  height:60%;
+} */
+
+
+
+/*STORES*/
+/*STORE_CARD*/
+
+
+.store-card {
+  display: grid;
+  place-items: center;
+  width: 80vw;
+  max-width: 21.875rem;
+  height: 28.125rem;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.store-card > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.store-card__background {
+  object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+}
+
+.store-card__content {
+  --flow-space: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-end;
+  height: 55%;
+  padding: 12% 1.25rem 1.875rem;
+  background: linear-gradient(
+    180deg,
+    hsla(239, 80%, 49%, 0) 0%,
+    hsla(0, 0%, 0%, 0.5) 10%,
+    hsl(0, 0%, 0%) 100%
+  );
+}
+
+.store-card__content--container {
+  --flow-space: 1.25rem;
+}
+
+.store-card__title {
+  position: relative;
+  width: fit-content;
+  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+}
+
+.store-card__title::after {
+  content: "";
+  position: absolute;
+  height: 0.3125rem;
+  width: calc(100% + 1.25rem);
+  bottom: calc((1.25rem - 0.5rem) * -1);
+  left: -1.25rem;
+  background-color: var(--brand-color);
+}
+
+.store-card__button {
+  padding: 0.75em 1.6em;
+  width: fit-content;
+  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  font-variant: small-caps;
+  font-weight: bold;
+  border-radius: 0.45em;
+  border: none;
+  background-color: var(--brand-color);
+  font-family: var(--font-title);
+  font-size: 1.125rem;
+  color: var(--black);
+}
+
+.store-card__button:focus {
+  outline: 2px solid black;
+  outline-offset: -5px;
+}
+
+@media (any-hover: hover) and (any-pointer: fine) {
+  .store-card__content {
+    transform: translateY(62%);
+    transition: transform 500ms ease-out;
+    transition-delay: 500ms;
+  }
+
+  .store-card__title::after {
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1000ms ease-in, transform 500ms ease-out;
+    transition-delay: 500ms;
+    transform-origin: right;
+  }
+
+  .store-card__background {
+    transition: transform 500ms ease-in;
+  }
+
+  .store-card__content--container > :not(.store-card__title),
+  .store-card__button {
+    opacity: 0;
+    transition: transform 500ms ease-out, opacity 500ms ease-out;
+  }
+
+  .store-card:hover,
+  .store-card:focus-within {
+    transform: scale(1.05);
+    transition: transform 500ms ease-in;
+  }
+
+  .store-card:hover .store-card__content,
+  .store-card:focus-within .store-card__content {
+    transform: translateY(0);
+    transition: transform 500ms ease-in;
+  }
+
+  .store-card:focus-within .store-card__content {
+    transition-duration: 0ms;
+  }
+
+  .store-card:hover .store-card__background,
+  .store-card:focus-within .store-card__background {
+    transform: scale(1.3);
+  }
+
+  .store-card:hover .store-card__content--container > :not(.store-card__title),
+  .store-card:hover .store-card__button,
+  .store-card:focus-within .store-card__content--container > :not(.store-card__title),
+  .store-card:focus-within .store-card__button {
+    opacity: 4;
+    transition: opacity 500ms ease-in;
+    transition-delay: 1000ms;
+  }
+
+  .store-card:hover .store-card__title::after,
+  .store-card:focus-within .store-card__title::after {
+    opacity: 4;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: opacity 500ms ease-in, transform 500ms ease-in;
+    transition-delay: 500ms;
+  }
+}
+
+.store-card__description{
+  color:white;
+  text-align: left;
+  margin:20px 0px;
+}
+
+/*hoovering effect UNDERLINE*/
+/* Slide in */
+h2{
+color:white;
+font-weight:bolder;
+margin-bottom: 5px;
+}
+
+.store-card__title {
+  position: relative;
+  overflow: hidden;
+}
+
+.store-card__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px; /* thickness  */
+  background-color: white; 
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.store-card__title:hover::after,
+.store-card__title:focus::after {
+  transform: translateX(0);
+}
