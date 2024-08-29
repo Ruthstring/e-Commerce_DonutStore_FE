@@ -9,7 +9,7 @@ const Hero=()=>{
         navigate("/shopping-cart")
     }
     return(
-     <div className="heroContainer mb-28 mt-28">
+     <div className="heroContainer mb-28 mt-19">
         <div className="mb-8">
             <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-12">
                 The best
