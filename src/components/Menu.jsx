@@ -120,8 +120,27 @@ const Menu = () => {
             </div>
 
             {/* Display filtered items */}
+
             {filteredItems.length > 0 ? (
-                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <ul className="flex flex-wrap justify-center gap-6">
+                    {filteredItems.map(item => (
+                        <li key={item._id} className="">
+                            <Card
+                                title={item.title}
+                                price={item.price}
+                                description={item.description}
+                                imageUrl={item.imageUrl || 'default-image-url.jpg'}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className="text-xl text-center text-gray-500">
+                    Sorry, not that flavor on the menu at the moment
+                </p>
+            )}
+            {/* {filteredItems.length > 0 ? (
+                <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                     {filteredItems.map(item => (
                         <li key={item._id} className="min-w-0">
                             <Card
@@ -137,7 +156,7 @@ const Menu = () => {
                 <p className="text-xl text-center text-gray-500">
                     Sorry, not that flavor on the menu at the moment
                 </p>
-            )}
+            )} */}
         </div>
     );
 };
