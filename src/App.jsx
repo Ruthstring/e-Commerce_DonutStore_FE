@@ -7,6 +7,7 @@ import Featured from "./components/Featured";
 import Stores from "./components/Stores";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
+import Login from "./components/Login";
 
 function App() {
   
@@ -27,7 +28,7 @@ function App() {
         } />
 
         <Route path="/menu" element={<Menu />}/>
-
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/shopping-cart" element={<ShoppingCart />} /> */}
         
       </Routes>

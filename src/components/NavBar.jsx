@@ -1,10 +1,16 @@
 import React, {useState} from "react";
 import Logo from "../assets/donuts_logo.png"
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'; //to display name of the user if token
+
 
 
 const NavBar = () => {
     // State to track if the mobile menu is open
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
+     // Get the user from the Redux state
+     const user = useSelector((state) => state.auth.user);
   
     // Toggle function to change the menu state
     const toggleMenu = () => {
@@ -57,6 +63,17 @@ const NavBar = () => {
                   About
                 </a>
               </li>
+              { user ? (
+                <li className="menu-item" > 
+                 Welcome, {user.username} </li>):(
+                  <li className="menu-item" >
+                  <Link to="/login" className="text-gray-800 hover:text-gray-400">
+                    Login
+                  </Link>
+                </li>
+  
+                )}
+              
             </ul>
             <div className="button buy-btn">
               <a href="#buy" className="  text-white py-2 px-4 rounded">

@@ -5,7 +5,7 @@ import DonutStore3 from "../assets/donut_store3.jpg"
 
 const Stores=()=>{
     return(
-     <stores id="#stores">
+     <div id="#stores">
         <ul className="flex gap-8 mt-20 mb-20 ml-4 mr-4 justify-center">
         <li className="store-card">
             <img
@@ -33,7 +33,7 @@ const Stores=()=>{
                 </a>
             </div>
         </li>
-        <li class="store-card">
+        <li className="store-card">
             <img
                 className="store-card__background"
                 src={DonutStore3}
@@ -87,7 +87,7 @@ const Stores=()=>{
         </li>
 
 </ul>
-     </stores>
+     </div>
     )
 }
 
