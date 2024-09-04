@@ -127,6 +127,7 @@ const Menu = () => {
                     {filteredItems.map(item => (
                         <li key={item._id} className="">
                             <Card
+                                productId={item._id} 
                                 title={item.title}
                                 price={item.price}
                                 description={item.description}
