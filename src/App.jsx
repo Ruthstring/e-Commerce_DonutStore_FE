@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
   
@@ -31,7 +32,7 @@ function App() {
         <Route path="/menu" element={<Menu />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* <Route path="/shopping-cart" element={<ShoppingCart />} /> */}
+        <Route path="/cart" element={<ShoppingCart />} />
         
       </Routes>
       {/* Footer is outside Routes to render it on all pages */}

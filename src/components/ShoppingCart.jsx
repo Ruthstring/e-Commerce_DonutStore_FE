@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart, updateQuantity, checkout } from '../features/cart/cartSlice'; // Redux slice for handling cart actions
+import { getCart, updateQuantity, checkout } from '../features/auth/cart/cartSlice'; // Redux slice for handling cart actions
 
 const ShoppingCart = () => {
     const dispatch = useDispatch();
-    const cart = useSelector(state => state.cart.cartItems);
+
+
+
+     const cart = useSelector(state => state.cart?.cartItems || []);  // If cart is undefined, default to an empty array
     const [totalAmount, setTotalAmount] = useState(0);
 
     useEffect(() => {

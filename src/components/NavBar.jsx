@@ -3,7 +3,7 @@ import Logo from "../assets/donuts_logo.png"
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; //access state to display name of the user if token, dispatch log out action
 import { logout } from '../features/auth/authSlice'
-import { FaSignOutAlt } from 'react-icons/fa'
+import { FaSignOutAlt, FaShoppingCart } from 'react-icons/fa'
 
 const NavBar = () => {
     // State to track if the mobile menu is open
@@ -130,6 +130,13 @@ const NavBar = () => {
               </a>
             </li>
           </ul>
+            {/* Link to the Shopping Cart */}
+          <div className="flex items-center space-x-2">
+            <Link to="/cart" className="text-gray-800 hover:text-gray-400">
+              <FaShoppingCart /> 
+            </Link>
+          </div>
+
         </div>
       )}
     </div>
