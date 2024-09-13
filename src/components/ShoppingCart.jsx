@@ -90,7 +90,7 @@ const ShoppingCart = () => {
                         <ul>
                             {cart.map(item => (
                                 <li key={item.productId._id} className="flex justify-between">
-                                    <span>{item.productId.title}</span>
+                                    <span>{item.productId.title} x{item.quantity}</span>
                                     <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
                                 </li>
                             ))}

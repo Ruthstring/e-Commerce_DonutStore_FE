@@ -25,7 +25,7 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (product, { ge
 export const updateQuantity = createAsyncThunk('cart/updateQuantity', async ({ productId, quantity }, { getState }) => {
   const token = getState().auth.token;
   const response = await fetch(`http://localhost:5000/api/cart/update-quantity`, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ export const updateQuantity = createAsyncThunk('cart/updateQuantity', async ({ p
   if (!response.ok) {
     throw new Error('Failed to update cart quantity');
   }
-  return response.json();
+  return { productId, quantity };
 });
 
 // Checkout action
@@ -124,6 +124,17 @@ const cartSlice = createSlice({
       .addCase(removeFromCart.rejected, (state, action) => {
         console.error('Failed to remove item from cart:', action.error.message);
         state.error = action.error.message;
+      })
+      builder.addCase(updateQuantity.fulfilled, (state, action) => {
+        // Find the cart item and update its quantity
+        const { productId, quantity } = action.payload;
+        const item = state.cartItems.find(item => item.productId._id === productId);
+        if (item) {
+          item.quantity = quantity;
+        }
+      });
+      builder.addCase(updateQuantity.rejected, (state, action) => {
+        console.error('Failed to update cart quantity:', action.error.message);
       });
   },
 });
