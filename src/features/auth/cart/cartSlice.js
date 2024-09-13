@@ -76,6 +76,27 @@ export const getCart = createAsyncThunk('cart/getCart', async (_, { getState }) 
   return data; // This is the cart payload
 });
 
+// Remove item from cart
+export const removeFromCart = createAsyncThunk('cart/removeFromCart', async (productId, { getState }) => {
+  const token = getState().auth.token;
+  const response = await fetch(`http://localhost:5000/api/cart/remove`, {
+    method: 'DELETE', 
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ productId }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to remove item from cart');
+  }
+
+  return productId; // Return the productId to remove it from the Redux state
+});
+
+
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -85,17 +106,28 @@ const cartSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getCart.fulfilled, (state, action) => {
-      console.log('Cart data stored in Redux:', action.payload); // Check the data stored in Redux
-      state.cartItems = action.payload || []; // Ensure cartItems is always an array
-      state.error = null;
-    });
-    builder.addCase(getCart.rejected, (state, action) => {
-      console.error('Failed to fetch cart:', action.error.message);
-      state.error = action.error.message;
-    });
+    builder
+      .addCase(getCart.fulfilled, (state, action) => {
+        console.log('Cart data stored in Redux:', action.payload); // Check the data stored in Redux
+        state.cartItems = action.payload || []; // Ensure cartItems is always an array
+        state.error = null;
+      })
+      .addCase(getCart.rejected, (state, action) => {
+        console.error('Failed to fetch cart:', action.error.message);
+        state.error = action.error.message;
+      })
+      .addCase(removeFromCart.fulfilled, (state, action) => {
+        // Filter out the removed productId from cartItems
+        state.cartItems = state.cartItems.filter(item => item.productId._id !== action.payload);
+        state.error = null;
+      })
+      .addCase(removeFromCart.rejected, (state, action) => {
+        console.error('Failed to remove item from cart:', action.error.message);
+        state.error = action.error.message;
+      });
   },
 });
+
 
 // Selector for cartItems
 export const selectCartItems = createSelector(
