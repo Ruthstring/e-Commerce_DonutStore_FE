@@ -72,7 +72,7 @@ export const getCart = createAsyncThunk('cart/getCart', async (_, { getState }) 
   }
 
   const data = await response.json();
-  console.log(data)
+  console.log("data:",data)
   return data; // This is the cart payload
 });
 
@@ -91,6 +91,7 @@ const cartSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getCart.rejected, (state, action) => {
+      console.error('Failed to fetch cart:', action.error.message);
       state.error = action.error.message;
     });
   },

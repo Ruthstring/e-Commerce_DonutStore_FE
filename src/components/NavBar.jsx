@@ -93,9 +93,9 @@ const NavBar = () => {
           </ul>
 
           <div className="button buy-btn">
-            <a href="#buy" className="text-white py-2 px-4 rounded">
+            <Link to="/cart" className="text-white py-2 px-4 rounded">
               Buy Now
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
