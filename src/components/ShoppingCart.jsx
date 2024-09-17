@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCart, updateQuantity, checkout, removeFromCart, selectCartItems, selectSessionExpired } from '../features/auth/cart/cartSlice'; // Redux slice for handling cart actions
 import SessionExpiredModal from './SessionExpiredModal';
 import { useNavigate } from 'react-router-dom';
+import Recommendations from './Recommendations';
 
 const ShoppingCart = () => {
     const dispatch = useDispatch();
@@ -141,7 +142,15 @@ const ShoppingCart = () => {
 
       {/* Session Expired Modal */}
       {sessionExpired && <SessionExpiredModal onClose={() => navigate('/login')} />}
+
+    {/* Recommendation Section */}
+    {cart.length > 0 && (
+        <Recommendations cartItems={cart} />
+     )}
+
+
     </div>
+
     );
 };
 
