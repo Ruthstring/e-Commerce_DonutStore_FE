@@ -13,13 +13,14 @@ const ShoppingCart = () => {
     const cartError = useSelector(state => state.cart.error); 
     const sessionExpired = useSelector(selectSessionExpired); // Check if session expired
     const [totalAmount, setTotalAmount] = useState(0);
+    const user = useSelector((state) => state.auth.user);
 
     // Always fetch cart items when the component mounts
     useEffect(() => {
-        dispatch(getCart());
-    }, [dispatch]);
-
-    console.log("Cart received in frontend:", cart);
+        if (user) {
+          dispatch(getCart());
+        }
+      }, [dispatch, user]);
 
     // Recalculate totalAmount when cart changes
     useEffect(() => {
@@ -47,7 +48,7 @@ const ShoppingCart = () => {
     };
 
     const handleLogin = () => {
-        navigate('/login'); // Redirect to the login page
+        navigate('/login', { state: { from: '/cart' } }); // Pass the current location (cart) to login route); // Redirect to the login page
     };
 
     // Show modal if session expired
@@ -61,65 +62,143 @@ const ShoppingCart = () => {
     }
 
     return (
-        <div className="shopping-cart-container flex">
-            <div className="cart-items w-2/3 p-4">
-                <h2>Your Cart</h2>
-                <ul>
-                    {cart.length === 0 ? (
-                        <p>Your cart is empty</p>
-                    ) : (
-                        cart.map(item => (
-                            <li key={item.productId._id} className="flex justify-between items-center">
-                                <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
-                                <div>
-                                    <p>{item.productId.title}</p>
-                                    <p>${item.productId.price.toFixed(2)}</p>
-                                </div>
-                                <select
-                                    value={item.quantity}
-                                    onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
-                                >
-                                    {[1, 2, 3, 4, 5].map(qty => (
-                                        <option key={qty} value={qty}>{qty}</option>
-                                    ))}
-                                </select>
-                                <button 
-                                    onClick={() => handleRemoveItem(item.productId._id)} 
-                                    className="bg-red-500 text-white p-1 rounded ml-4"
-                                >
-                                    Remove
-                                </button>
-                            </li>
-                        ))
-                    )}
-                </ul>
-            </div>
 
-            <div className="order-summary w-1/3 p-4">
-                <h2>Order Summary</h2>
-                {cart.length === 0 ? (
-                    <p>No items to summarize</p>
-                ) : (
-                    <>
-                        <ul>
-                            {cart.map(item => (
-                                <li key={item.productId._id} className="flex justify-between">
-                                    <span>{item.productId.title}</span>
-                                    <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="flex justify-between">
-                            <span>Total</span>
-                            <span>${totalAmount.toFixed(2)}</span>
-                        </div>
-                        <button onClick={handleCheckout} className="bg-blue-500 text-white p-2 rounded">
-                            Checkout
-                        </button>
-                    </>
-                )}
-            </div>
+        <div className="shopping-cart-container flex">
+      {/* Show a custom message if the user is not logged in */}
+      {!user ? (
+        <div className="not-logged-in-message flex flex-col items-center">
+          <h2>Feeling like a donut?</h2>
+          <p>Login to access your personal cart.</p>
+          <button onClick={handleLogin} className="bg-blue-500 text-white p-2 rounded">
+            Login
+          </button>
         </div>
+      ) : (
+        <>
+          {/* Show cart items if the user is logged in */}
+          <div className="cart-items w-2/3 p-4">
+            <h2>Your Cart</h2>
+            <ul>
+              {cart.length === 0 ? (
+                <p>Your cart is empty</p>
+              ) : (
+                cart.map(item => (
+                  <li key={item.productId._id} className="flex justify-between items-center">
+                    <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
+                    <div>
+                      <p>{item.productId.title}</p>
+                      <p>${item.productId.price.toFixed(2)}</p>
+                    </div>
+                    <select
+                      value={item.quantity}
+                      onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
+                    >
+                      {[1, 2, 3, 4, 5].map(qty => (
+                        <option key={qty} value={qty}>{qty}</option>
+                      ))}
+                    </select>
+                    <button 
+                      onClick={() => handleRemoveItem(item.productId._id)} 
+                      className="bg-red-500 text-white p-1 rounded ml-4"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+
+          <div className="order-summary w-1/3 p-4">
+            <h2>Order Summary</h2>
+            {cart.length === 0 ? (
+              <p>No items to summarize</p>
+            ) : (
+              <>
+                <ul>
+                  {cart.map(item => (
+                    <li key={item.productId._id} className="flex justify-between">
+                      <span>{item.productId.title}</span>
+                      <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex justify-between">
+                  <span>Total</span>
+                  <span>${totalAmount.toFixed(2)}</span>
+                </div>
+                <button onClick={handleCheckout} className="bg-blue-500 text-white p-2 rounded">
+                  Checkout
+                </button>
+              </>
+            )}
+          </div>
+        </>
+      )}
+
+      {/* Session Expired Modal */}
+      {sessionExpired && <SessionExpiredModal onClose={() => navigate('/login')} />}
+    </div>
+
+        // <div className="shopping-cart-container flex">
+        //     <div className="cart-items w-2/3 p-4">
+        //         <h2>Your Cart</h2>
+        //         <ul>
+        //             {cart.length === 0 ? (
+        //                 <p>Your cart is empty</p>
+        //             ) : (
+        //                 cart.map(item => (
+        //                     <li key={item.productId._id} className="flex justify-between items-center">
+        //                         <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
+        //                         <div>
+        //                             <p>{item.productId.title}</p>
+        //                             <p>${item.productId.price.toFixed(2)}</p>
+        //                         </div>
+        //                         <select
+        //                             value={item.quantity}
+        //                             onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
+        //                         >
+        //                             {[1, 2, 3, 4, 5].map(qty => (
+        //                                 <option key={qty} value={qty}>{qty}</option>
+        //                             ))}
+        //                         </select>
+        //                         <button 
+        //                             onClick={() => handleRemoveItem(item.productId._id)} 
+        //                             className="bg-red-500 text-white p-1 rounded ml-4"
+        //                         >
+        //                             Remove
+        //                         </button>
+        //                     </li>
+        //                 ))
+        //             )}
+        //         </ul>
+        //     </div>
+
+        //     <div className="order-summary w-1/3 p-4">
+        //         <h2>Order Summary</h2>
+        //         {cart.length === 0 ? (
+        //             <p>No items to summarize</p>
+        //         ) : (
+        //             <>
+        //                 <ul>
+        //                     {cart.map(item => (
+        //                         <li key={item.productId._id} className="flex justify-between">
+        //                             <span>{item.productId.title}</span>
+        //                             <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
+        //                         </li>
+        //                     ))}
+        //                 </ul>
+        //                 <div className="flex justify-between">
+        //                     <span>Total</span>
+        //                     <span>${totalAmount.toFixed(2)}</span>
+        //                 </div>
+        //                 <button onClick={handleCheckout} className="bg-blue-500 text-white p-2 rounded">
+        //                     Checkout
+        //                 </button>
+        //             </>
+        //         )}
+        //     </div>
+        // </div>
     );
 };
 

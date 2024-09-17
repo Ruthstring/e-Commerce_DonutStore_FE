@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { createSelector } from 'reselect';
-
+import { logout } from '../authSlice'; 
 
 
 // Add product to cart
@@ -57,7 +57,7 @@ export const checkout = createAsyncThunk('cart/checkout', async (_, { getState }
 });
 
 // Fetch cart items
-export const getCart = createAsyncThunk('cart/getCart', async (_, { getState, rejectWithValue }) => {
+export const getCart = createAsyncThunk('cart/getCart', async (_, { getState, rejectWithValue,dispatch }) => {
   const token = getState().auth.token;
   const response = await fetch('http://localhost:5000/api/cart', {
     method: 'GET',
@@ -72,6 +72,7 @@ export const getCart = createAsyncThunk('cart/getCart', async (_, { getState, re
 
     // Check if the error is due to an expired token
     if (response.status === 401 && errorData.message === 'jwt expired') {
+      dispatch(logout());
       return rejectWithValue('Session expired');  // Return this as the error message
     }
 
@@ -109,7 +110,13 @@ const cartSlice = createSlice({
     error: null,
     sessionExpired: false,  // Add this flag to track session expiration
   },
-  reducers: {},
+  reducers: {
+    clearCart: (state) => {
+      state.cartItems = []; // Clear the cart when logout is called
+      state.error = null;
+      state.sessionExpired = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCart.fulfilled, (state, action) => {
@@ -156,6 +163,8 @@ export const selectCartItems = createSelector(
 
 // Selector for session expiration
 export const selectSessionExpired = (state) => state.cart.sessionExpired;
+export const { clearCart } = cartSlice.actions;
+
 
 export default cartSlice.reducer;
 

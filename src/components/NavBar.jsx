@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; // Use dispatch and selector from redux
 import { logout } from '../features/auth/authSlice'; // Correct import for logout action
+import { clearCart } from '../features/auth/cart/cartSlice';
 import { FaSignOutAlt, FaShoppingCart } from 'react-icons/fa';
 import Logo from '../assets/donuts_logo.png';
 
@@ -20,6 +21,7 @@ const NavBar = () => {
   // Handle logout
   const handleLogout = () => {
     dispatch(logout()); // Correctly using logout action here
+    dispatch(clearCart()); // Clear the cart after logout
   };
 
   return (

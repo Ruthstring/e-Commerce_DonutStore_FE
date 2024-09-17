@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/auth/authSlice';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link,  useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,19 +12,22 @@ const Login = () => {
   const { loading, error } = useSelector((state) => state.auth);
   const { token, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get the location user came from, default to homepage if none
+  const from = location.state?.from || '/';
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
     dispatch(loginUser({ email, password }));
   };
 
   useEffect(() => {
     if (token) {
       // Redirect to home page if login is successful
-      navigate('/');
+      navigate(from);//redirect to the original destination
     }
-  }, [token, navigate]);
+  }, [token, navigate,from]);
 
   return (
     <div id="login">

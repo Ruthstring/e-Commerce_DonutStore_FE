@@ -65,6 +65,10 @@ const authSlice = createSlice({
 export const { logout } = authSlice.actions;
 export default authSlice.reducer;
 
+
+
+
+
 // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // // Async thunk for logging in a user
