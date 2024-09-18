@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'; // Use dispatch and selector from redux
-import { logout } from '../features/auth/authSlice'; // Correct import for logout action
+import { Link, useLocation } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../features/auth/authSlice'; 
 import { clearCart } from '../features/auth/cart/cartSlice';
 import { FaSignOutAlt, FaShoppingCart } from 'react-icons/fa';
 import Logo from '../assets/donuts_logo.png';
@@ -9,7 +10,9 @@ import Logo from '../assets/donuts_logo.png';
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Get the user and authentication state from Redux
+  const location = useLocation();
+
+  // Getting the user and authentication state from Redux
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
@@ -28,9 +31,11 @@ const NavBar = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center">
         <div className="w-36 ml-5">
-          <img src={Logo} alt="Donuts Logo" className="w-36" />
+          <Link to="/">
+          <img src={Logo} alt="Donuts Logo" className="w-36" /> 
+          </Link>
         </div>
-
+      
         {/* Hamburger Menu Button (Visible on small screens) */}
         <div className="md:hidden">
           <button
@@ -56,14 +61,14 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="menu-item">
-              <Link to="/stores" className="text-gray-800 hover:text-gray-400">
+              <HashLink smooth to="/#stores" className="text-gray-800 hover:text-gray-400">
                 Stores
-              </Link>
+              </HashLink>
             </li>
             <li className="menu-item">
-              <Link to="/featured" className="text-gray-800 hover:text-gray-400">
+              <HashLink smooth to="/#featured" className="text-gray-800 hover:text-gray-400">
                 Featured
-              </Link>
+              </HashLink>
             </li>
             <li className="menu-item">
               <Link to="/about" className="text-gray-800 hover:text-gray-400">
@@ -92,13 +97,17 @@ const NavBar = () => {
             )}
           </ul>
 
-          <div className="button buy-btn">
-            <Link to="/cart" className="text-white py-2 px-4 rounded">
-              Buy Now
-            </Link>
-          </div>
+           {/* Conditionally hide the "Buy Now" button if on the shopping cart page */}
+           {location.pathname !== '/cart' && (
+            <div className="button buy-btn">
+              <Link to="/cart" className="text-white py-2 px-4 rounded">
+                Buy Now
+              </Link>
+            </div>
+          )}
         </nav>
       </div>
+
 
       {/* Mobile Menu */}
       {isMenuOpen && (
