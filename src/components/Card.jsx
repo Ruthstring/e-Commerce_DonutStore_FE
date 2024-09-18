@@ -39,18 +39,23 @@ const Card = ({ productId, title, price, description, imageUrl }) => {
           </div>
           {/* Content within the card */}
           <div className="absolute pt-20 px-6 pb-4">
-            <div className="font-bold text-xl mb-2">{title}</div>
+            <div className="flex mb-5 mt-12 ml-4">
+              <div>
+            <div className="font-bold text-2xl mb-2">{title}</div>
             <div className="font-bold text-xl mb-2">${price}</div>
+            </div>
             <button
               onClick={toggleFlip}
-              className="text-blue-500 hover:text-blue-700 mt-4"
+              className="text-blue-500 hover:text-blue-700 ml-3 self-start"
+              
             >
-              <FontAwesomeIcon icon={faInfoCircle} size="lg" />
+              <FontAwesomeIcon icon={faInfoCircle} size="xl" />
             </button>
+            </div>
             {/* Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="mt-4 bg-green-500 text-white px-4 py-2 rounded"
+              className="button mt-5"
             >
               Add to Cart
             </button>
@@ -61,14 +66,14 @@ const Card = ({ productId, title, price, description, imageUrl }) => {
           <div className="absolute top-2 right-2">
             <button
               onClick={toggleFlip}
-              className="text-black hover:text-gray-600"
+              className="text-orange-700 hover:text-gray-600 mt-3 mr-3"
             >
-              <FontAwesomeIcon icon={faTimes} size="lg" />
+              <FontAwesomeIcon icon={faTimes} size="2xl" />
             </button>
           </div>
           <div className="flex flex-col justify-start items-start">
-            <h2 className="text-2xl font-bold">Product Information</h2>
-            <p className="text-gray-700 text-base mt-4">{description}</p>
+            <h2 className="text-blue-900 text-2xl font-bold ml-3">Product Information</h2>
+            <p className="text-gray-700 text-left mt-4 ml-3">{description}</p>
           </div>
         </div>
       </div>

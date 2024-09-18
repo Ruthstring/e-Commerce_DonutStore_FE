@@ -7,13 +7,13 @@ const Hero=()=>{
     return(
      <div className="heroContainer mb-28 mt-19">
         <div className="mb-8">
-            <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-12">
+            <p className="text-6xl md:text-8xl font-bold leading-tight mb-12">
                 The best
                 <br/>
                  vegan Donuts
                  <br/>
                  are here.
-            </h1>
+            </p>
         </div>
        
        <div className="mb-8">

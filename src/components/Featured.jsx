@@ -78,7 +78,10 @@ const Featured = () => {
     }
 
     return (
-        <div id="featured" className="featuredContainer p-20">
+        <div id="featured" className="featuredContainer pt-10">
+            <div>
+                <h1 className="title ml-10 md:ml-32 lg:ml-20  " >This week's specials</h1>
+            </div>
             {showModal && <SessionExpiredModal 
                                             onClose={() => setShowModal(false)} 
                                             message="Login to enjoy our delicious donuts!" 

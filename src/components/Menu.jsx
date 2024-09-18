@@ -110,7 +110,8 @@ const Menu = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="mb-6">
+            <div className="mb-6 text-left ml-12">
+                <h2 className="text-black">Any other flavour in mind?</h2>
                 <input
                     type="text"
                     value={searchTerm}
