@@ -56,9 +56,9 @@ const Recommendations = ({ cartItems }) => {
     }
 
     return (
-        <div className="recommendations">
+        <div className="recommendations ">
             <h3>You might also like</h3>
-            <ul>
+            <ul className='flex'>
                 {recommendations.map(item => (
                     <li key={item._id}>
                         <img src={item.imageUrl} alt={item.title} className="w-16 h-16" />

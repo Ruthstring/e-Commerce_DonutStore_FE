@@ -18,12 +18,16 @@ html,body{
  .button{
   background-color: #f06c5c;
   border-radius: 30px;
-  font:white;
+  color:white;
   font-weight: bold;
   font-size: large;
   padding: 10px 30px;
+  cursor: pointer;
  }
 
+ .button:hover {
+  background-color: #e05a4d; /* Add hover effect */
+}
 
 
  /*COMPONENTS*/
@@ -317,4 +321,272 @@ margin-bottom: 5px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/*SHOPING CART*/
+
+/*Image not-loged in*/
+.imageTower{
+  max-width: 250px;
+}
+
+
+
+/*TRIAL LOGIN*/
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background-color: #f5f5f5; */
+  padding: 20px;
+ 
+}
+
+.donut-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease-in-out;
+   z-index: 1;
+}
+
+.donut-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease-in-out;
+}
+
+.donut-container:hover .donut-image {
+  transform: rotate(360deg);
+}
+
+.login-form {
+  background: rgba(255, 192, 203, 0.3); /* Light pink background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+  z-index: 10;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.login-link {
+  margin-top: 15px;
+}
+
+.login-text {
+  color: blue;
+  text-decoration: underline;
+}
+
+.login-text:hover {
+  color: darkblue;
+}
+.btn-login{
+  position: relative;
+  z-index:20;
+}
+
+.register-link{
+  position: relative;
+  z-index:20;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .donut-container {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+/*REGISTER*/
+/* Container setup for alignment */
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background-color: #f5f5f5; */
+  padding: 20px;
+}
+
+/* Donut image container */
+.donut-container {
+  position: absolute;
+  width: 400px;
+  height: 800px;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Styling for the donut image and hover effect */
+.donut-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease-in-out;
+}
+
+.donut-container:hover .donut-image {
+  transform: rotate(360deg);
+}
+
+/* Register form container */
+.register-form {
+  background: rgba(255, 192, 203, 0.3); /* Light pink background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  padding-bottom: 30px;
+}
+
+/* Form title */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 70%;
+  right: 20px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.password-toggle:hover {
+  color: #666;
+}
+
+/* Submit button styling */
+.submit-btn {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  margin-top:20px;
+}
+
+.submit-btn:hover {
+  background-color: #333;
+}
+
+/* Link to login after successful registration */
+.login-text {
+  color: blue;
+  text-decoration: underline;
+}
+
+.login-text:hover {
+  color: darkblue;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .register-container {
+    padding: 10px;
+  }
+
+  .register-form {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .donut-container {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+/*SHOPPING CART*/
+
+.cart-items{
+  max-width: 600px;
+
+  margin-right:30px;
+}
+
+.order-summary{
+  background-color:#fcd7d2;
+  border-radius: 5%;
+  padding:30px;
 }

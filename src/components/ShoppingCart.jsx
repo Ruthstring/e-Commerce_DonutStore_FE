@@ -4,6 +4,7 @@ import { getCart, updateQuantity, checkout, removeFromCart, selectCartItems, sel
 import SessionExpiredModal from './SessionExpiredModal';
 import { useNavigate } from 'react-router-dom';
 import Recommendations from './Recommendations';
+import ImageTower from "../assets/ImageTower.png"
 
 const ShoppingCart = () => {
     const dispatch = useDispatch();
@@ -63,95 +64,204 @@ const ShoppingCart = () => {
     }
 
 
-
-
     return (
-
-        <div className="shopping-cart-container flex">
-      {/* Show a custom message if the user is not logged in */}
-      {!user ? (
-        <div className="not-logged-in-message flex flex-col items-center">
-          <h2>Feeling like a donut?</h2>
-          <p>Login to access your personal cart.</p>
-          <button onClick={handleLogin} className="bg-blue-500 text-white p-2 rounded">
-            Login
-          </button>
-        </div>
-      ) : (
-        <>
-          {/* Show cart items if the user is logged in */}
-          <div className="cart-items w-2/3 p-4">
-            <h2>Your Cart</h2>
-            <ul>
-              {cart.length === 0 ? (
-                <p>Your cart is empty</p>
-              ) : (
-                cart.map(item => (
-                  <li key={item.productId._id} className="flex justify-between items-center">
-                    <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
-                    <div>
-                      <p>{item.productId.title}</p>
-                      <p>${item.productId.price.toFixed(2)}</p>
-                    </div>
-                    <select
-                      value={item.quantity}
-                      onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
-                    >
-                      {[1, 2, 3, 4, 5].map(qty => (
-                        <option key={qty} value={qty}>{qty}</option>
-                      ))}
-                    </select>
-                    <button 
-                      onClick={() => handleRemoveItem(item.productId._id)} 
-                      className="bg-red-500 text-white p-1 rounded ml-4"
-                    >
-                      Remove
-                    </button>
-                  </li>
-                ))
-              )}
-            </ul>
+      <div className="shopping-cart-container flex flex-col">
+        {!user ? (
+          <div className="not-logged-in-message flex ml-4 md:ml-12 mb-20">
+            <div className="flex-col ml-0 md:ml-8">
+              <h2 className="text-blue-900 text-2xl self-start">Feeling like a donut?</h2>
+              <p className="mt-2 mb-10 self-start">Login to access your personal cart.</p>
+              <button onClick={handleLogin} className="button">
+                Login
+              </button>
+            </div>
+            <div>
+              <img src={ImageTower} className="imageTower" alt="Login to continue" />
+            </div>
           </div>
-
-          <div className="order-summary w-1/3 p-4">
-            <h2>Order Summary</h2>
-            {cart.length === 0 ? (
-              <p>No items to summarize</p>
-            ) : (
-              <>
+        ) : (
+          <>
+            {/* First row: Cart items and order summary */}
+            <div className="flex flex-col md:flex-row w-full space-y-8 md:space-y-0 md:space-x-8">
+              {/* Cart items list (2/3 width) */}
+              <div className="cart-items w-full md:w-2/3 p-4 md:ml-36">
+                <h2 className="text-black">Your Cart</h2>
                 <ul>
-                  {cart.map(item => (
-                    <li key={item.productId._id} className="flex justify-between">
-                      <span>{item.productId.title}</span>
-                      <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
-                    </li>
-                  ))}
+                  {cart.length === 0 ? (
+                    <p>Your cart is empty</p>
+                  ) : (
+                    cart.map(item => (
+                      <li key={item.productId._id} className="flex justify-between items-center mb-4">
+                        <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
+                        <div>
+                          <p>{item.productId.title}</p>
+                          <p>${item.productId.price.toFixed(2)}</p>
+                        </div>
+                        <select
+                          value={item.quantity}
+                          onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
+                          className="border border-gray-300 p-1"
+                        >
+                          {[1, 2, 3, 4, 5].map(qty => (
+                            <option key={qty} value={qty}>{qty}</option>
+                          ))}
+                        </select>
+                        <button
+                          onClick={() => handleRemoveItem(item.productId._id)}
+                          className="bg-red-500 text-white p-1 rounded ml-4"
+                        >
+                          Remove
+                        </button>
+                      </li>
+                    ))
+                  )}
                 </ul>
-                <div className="flex justify-between">
-                  <span>Total</span>
-                  <span>${totalAmount.toFixed(2)}</span>
-                </div>
-                <button onClick={handleCheckout} className="bg-blue-500 text-white p-2 rounded">
-                  Checkout
-                </button>
-              </>
+              </div>
+  
+              {/* Order summary (1/3 width) */}
+              <div className="order-summary w-full md:w-1/3 ">
+                <h2 className="text-black">Order Summary</h2>
+                {cart.length === 0 ? (
+                  <p>No items to summarize</p>
+                ) : (
+                  <>
+                    <ul>
+                      {cart.map(item => (
+                        <li key={item.productId._id} className="flex justify-between mb-2">
+                          <span>{item.productId.title}</span>
+                          <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex justify-between mt-4">
+                      <span className="font-bold mt-5">Total</span>
+                      <span className="font-bold mt-5" >${totalAmount.toFixed(2)}</span>
+                    </div>
+                    <button
+                      onClick={handleCheckout}
+                      className="bg-blue-500 text-white p-2 rounded mt-4 w-full"
+                    >
+                      Checkout
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+  
+            {/* Second row: Recommendations (full width) */}
+            {cart.length > 0 && (
+              <div className="w-full mt-8 flex-col  md:ml-36">
+                <Recommendations cartItems={cart} />
+              </div>
             )}
-          </div>
-        </>
-      )}
-
-      {/* Session Expired Modal */}
-      {sessionExpired && <SessionExpiredModal onClose={() => navigate('/login')} />}
-
-    {/* Recommendation Section */}
-    {cart.length > 0 && (
-        <Recommendations cartItems={cart} />
-     )}
-
-
-    </div>
-
+          </>
+        )}
+  
+        {/* Session Expired Modal */}
+        {sessionExpired && <SessionExpiredModal onClose={() => navigate('/login')} />}
+      </div>
     );
+
+    // return (
+
+    //     <div className="shopping-cart-container ">
+    //   {/* Show a custom message if the user is not logged in */}
+    //   {!user ? (
+        
+        
+    //     <div className="not-logged-in-message flex ml-4 md:ml-12 mb-20">
+    //       <div className='flex-col ml-0 md:ml-8'>
+    //       <h2 className='text-blue-900 text-2xl self-start'>Feeling like a donut?</h2>
+    //       <p className="mt-2 mb-10 self-start ">Login to access your personal cart.</p>
+    //       <button onClick={handleLogin} className="button">
+    //         Login
+    //       </button>
+    //       </div>
+    //       <div>
+    //       <img src={ImageTower} className='imageTower'/>
+          
+    //       </div>
+    //     </div>
+       
+    //   ) : (
+    //     <>
+    //       {/* Show cart items if the user is logged in */}
+    //       <div className="flex">
+    //       <div className="cart-items flex ">
+    //       <div className=" ">
+    //         <h2 className="text-black">Your Cart</h2>
+    //         <ul>
+    //           {cart.length === 0 ? (
+    //             <p>Your cart is empty</p>
+    //           ) : (
+    //             cart.map(item => (
+    //               <li key={item.productId._id} className="flex justify-between items-center">
+    //                 <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
+    //                 <div>
+    //                   <p>{item.productId.title}</p>
+    //                   <p>${item.productId.price.toFixed(2)}</p>
+    //                 </div>
+    //                 <select
+    //                   value={item.quantity}
+    //                   onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
+    //                 >
+    //                   {[1, 2, 3, 4, 5].map(qty => (
+    //                     <option key={qty} value={qty}>{qty}</option>
+    //                   ))}
+    //                 </select>
+    //                 <button 
+    //                   onClick={() => handleRemoveItem(item.productId._id)} 
+    //                   className="bg-red-500 text-white p-1 rounded ml-4"
+    //                 >
+    //                   Remove
+    //                 </button>
+    //               </li>
+    //             ))
+    //           )}
+    //         </ul>
+    //         </div>
+    //       </div>
+
+    //       <div className="order-summary w-1/3 p-4">
+    //         <h2 className='text-black'>Order Summary</h2>
+    //         {cart.length === 0 ? (
+    //           <p>No items to summarize</p>
+    //         ) : (
+    //           <>
+    //             <ul>
+    //               {cart.map(item => (
+    //                 <li key={item.productId._id} className="flex justify-between">
+    //                   <span>{item.productId.title}</span>
+    //                   <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
+    //                 </li>
+    //               ))}
+    //             </ul>
+    //             <div className="flex justify-between">
+    //               <span>Total</span>
+    //               <span>${totalAmount.toFixed(2)}</span>
+    //             </div>
+    //             <button onClick={handleCheckout} className="bg-blue-500 text-white p-2 rounded">
+    //               Checkout
+    //             </button>
+    //           </>
+    //         )}
+    //       </div>
+    //       </div>
+    //     </>
+    //   )}
+
+    //   {/* Session Expired Modal */}
+    //   {sessionExpired && <SessionExpiredModal onClose={() => navigate('/login')} />}
+
+    // {/* Recommendation Section */}
+    // {cart.length > 0 && (
+    //     <Recommendations cartItems={cart} />
+    //  )}
+
+
+    // </div>
+
+    // );
 };
 
 export default ShoppingCart;
