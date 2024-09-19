@@ -578,7 +578,13 @@ h2 {
 
 
 /*SHOPPING CART*/
-
+.whole-cart{
+ 
+}
+.title-container{
+  margin:0px 0px 50px 0px;
+  align-self: center;
+}
 .cart-items{
   max-width: 600px;
 
@@ -586,7 +592,27 @@ h2 {
 }
 
 .order-summary{
-  background-color:#fcd7d2;
+  background-color: #fcd7d2;
   border-radius: 5%;
   padding:30px;
+  max-width: 500px;
+}
+.li-items-container{
+ 
+  border-radius: 2%;
+  max-width: 400px;
+  border:solid 3px #fcd7d2;
+}
+.border{
+  background-color: #fcd7d2;
+}
+
+.recommendations{
+  margin-left: 40px;
+}
+
+
+/*FOOTER*/
+#footer{
+  background-color:#3b5b7e;
 }

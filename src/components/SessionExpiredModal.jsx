@@ -25,9 +25,9 @@ const SessionExpiredModal = ({
   return (
     <div className="modal-backdrop">
       <div className="modal">
-        <h2>{title}</h2>
+        <h2 className="text-orange-700">{title}</h2>
         <p>{message}</p>
-        <button onClick={handleLoginRedirect} className="btn btn-primary">{buttonLabel}</button>
+        <button onClick={handleLoginRedirect} className="button mt-5">{buttonLabel}</button>
       </div>
     </div>
   );

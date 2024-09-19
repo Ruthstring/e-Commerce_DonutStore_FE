@@ -40,9 +40,10 @@ const Login = () => {
         />
       </div>
       <div className="login-form">
-        <h2>Login</h2>
+        
         <form onSubmit={handleSubmit}>
           <div className="input-group">
+          <h2 className='text-blue-800'>Login</h2>
             <label htmlFor="email">Email</label>
             <input
               type="email"

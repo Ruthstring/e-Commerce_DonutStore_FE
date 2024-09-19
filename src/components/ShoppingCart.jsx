@@ -5,6 +5,7 @@ import SessionExpiredModal from './SessionExpiredModal';
 import { useNavigate } from 'react-router-dom';
 import Recommendations from './Recommendations';
 import ImageTower from "../assets/ImageTower.png"
+import { FaTimes } from 'react-icons/fa'; 
 
 const ShoppingCart = () => {
     const dispatch = useDispatch();
@@ -82,64 +83,70 @@ const ShoppingCart = () => {
         ) : (
           <>
             {/* First row: Cart items and order summary */}
-            <div className="flex flex-col md:flex-row w-full space-y-8 md:space-y-0 md:space-x-8">
+            <div className="title-container ">
+            <h2 className="text-black title">Your Cart</h2>
+            </div>
+            <div className="whole-cart flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-0 justify-center items-center md:mr-20 ml-4 md:ml-0">
+            
               {/* Cart items list (2/3 width) */}
-              <div className="cart-items w-full md:w-2/3 p-4 md:ml-36">
-                <h2 className="text-black">Your Cart</h2>
-                <ul>
+              <div className="cart-items w-full md:w-2/3 p-4 ">
+                
+                <ul className=''>
                   {cart.length === 0 ? (
                     <p>Your cart is empty</p>
                   ) : (
                     cart.map(item => (
-                      <li key={item.productId._id} className="flex justify-between items-center mb-4">
-                        <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
+                      <div className="li-items-container ">
+                      <li key={item.productId._id} className="flex justify-between items-center mb-4 p-4">
+                        <img src={item.productId.imageUrl} alt={item.productId.title} className="w-20 h-20 z-1" />
                         <div>
-                          <p>{item.productId.title}</p>
+                          <p className='font-bold text-lg'>{item.productId.title}</p>
                           <p>${item.productId.price.toFixed(2)}</p>
                         </div>
                         <select
                           value={item.quantity}
                           onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
-                          className="border border-gray-300 p-1"
+                          className="border p-1"
                         >
                           {[1, 2, 3, 4, 5].map(qty => (
                             <option key={qty} value={qty}>{qty}</option>
                           ))}
                         </select>
                         <button
-                          onClick={() => handleRemoveItem(item.productId._id)}
-                          className="bg-red-500 text-white p-1 rounded ml-4"
-                        >
-                          Remove
-                        </button>
+                            onClick={() => handleRemoveItem(item.productId._id)}
+                            className="text-red-500 mr-4"
+                          >
+                            <FaTimes size={20} /> {/* Insert Font Awesome Cross Icon */}
+                          </button>
                       </li>
+                      </div>
                     ))
                   )}
                 </ul>
               </div>
   
               {/* Order summary (1/3 width) */}
-              <div className="order-summary w-full md:w-1/3 ">
+              <div className="order-summary ml-10 md:ml-0 md:w-1/3 self-start  ">
                 <h2 className="text-black">Order Summary</h2>
                 {cart.length === 0 ? (
-                  <p>No items to summarize</p>
+                  <p>No items in your cart</p>
                 ) : (
                   <>
-                    <ul>
+                    <ul className="pl-5 pr-5 pt-3">
                       {cart.map(item => (
                         <li key={item.productId._id} className="flex justify-between mb-2">
-                          <span>{item.productId.title}</span>
-                          <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
+                          <span className="text-lg">{item.productId.title} x {item.quantity}</span>
+                          <span className="text-lg">${(item.productId.price * item.quantity).toFixed(2)}</span>
                         </li>
                       ))}
                     </ul>
-                    <div className="flex justify-between mt-4">
-                      <span className="font-bold mt-5">Total</span>
-                      <span className="font-bold mt-5" >${totalAmount.toFixed(2)}</span>
+                    <div className="flex justify-between mt-20 pl-5 pr-5">
+                      <span className="font-bold mt-5 text-lg">Total</span>
+                      <span className="font-bold mt-5 text-lg" >${totalAmount.toFixed(2)}</span>
                     </div>
                     <button
                       onClick={handleCheckout}
-                      className="bg-blue-500 text-white p-2 rounded mt-4 w-full"
+                      className="button mt-4 w-full"
                     >
                       Checkout
                     </button>

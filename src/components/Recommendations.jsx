@@ -56,8 +56,12 @@ const Recommendations = ({ cartItems }) => {
     }
 
     return (
-        <div className="recommendations ">
-            <h3>You might also like</h3>
+        <>
+        <div>
+            <h3 className="title-container title ">You might also like</h3>
+            </div>
+        <div className="recommendations flex ">
+            
             <ul className='flex'>
                 {recommendations.map(item => (
                     <li key={item._id}>
@@ -76,6 +80,7 @@ const Recommendations = ({ cartItems }) => {
                 ))}
             </ul>
         </div>
+        </>
     );
 };
 
