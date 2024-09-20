@@ -31,7 +31,7 @@ const Login = () => {
   }, [token, navigate, from]);
 
   return (
-    <div className="login-container md:mt-10">
+    <div className="login-container mt-0 md:mt-3 flex flex-col md:flex-row items-center justify-center h-screen">
       <div className="donut-container hidden md:block">
         <img
           src={LoginDonut} // Update path to your image
@@ -39,11 +39,11 @@ const Login = () => {
           className="donut-image"
         />
       </div>
-      <div className="login-form">
+      <div className="login-form shadow-md rounded px-8 py-8 -mt-10 md:mt-0">
         
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-          <h2 className='text-blue-800'>Login</h2>
+          <h2 className='lilitafont title'>Login</h2>
             <label htmlFor="email">Email</label>
             <input
               type="email"

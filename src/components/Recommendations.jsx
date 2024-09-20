@@ -57,26 +57,28 @@ const Recommendations = ({ cartItems }) => {
 
     return (
         <>
+        
+        <div className="recommendations flex flex-col items-center  mb-28 ">
         <div>
-            <h3 className="title-container title ">You might also like</h3>
-            </div>
-        <div className="recommendations flex ">
-            
-            <ul className='flex'>
+            <h3 className="title-container title lilitafont ">You might also like</h3>
+            </div> 
+            <ul className='flex md:overflow-hidden overflow-x-scroll whitespace-nowrap md:mr[100px] '>
                 {recommendations.map(item => (
-                    <li key={item._id}>
-                        <img src={item.imageUrl} alt={item.title} className="w-16 h-16" />
-                        <div>{item.title}</div>
+                    <div className="recommendation-card rounded shadow-lg m-4   mb-20 inline-block flex-shrink-0 ">
+                    <li key={item._id} className='flex flex-col items-center'>
+                        <img src={item.imageUrl} alt={item.title} className="w-28 h-28 mb-3 " />
+                        <div className="text-lg font-bold">{item.title}</div>
                         <div>${item.price.toFixed(2)}</div>
 
                         <button 
                             onClick={() => handleAddToCart(item)} 
-                            className="bg-blue-500 text-white p-2 rounded"
+                            className="button mb-4 ml-8 mr-8 mt-4 "
                         >
                             Add to Cart
                         </button>
 
                     </li>
+                    </div>
                 ))}
             </ul>
         </div>

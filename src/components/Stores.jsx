@@ -6,9 +6,9 @@ import DonutStore3 from "../assets/donut_store3.jpg"
 const Stores=()=>{
     return(
      <div id="stores">
-        <h1 className="title ml-10 md:ml-32 lg:ml-20 pt-10">Our stores</h1>
+        <h1 className="title md:ml-32 lg:ml-20 pt-10 lilitafont ">Our stores</h1>
         {/* <ul className="flex gap-8 mt-20 mb-20 ml-4 mr-4 justify-center pb-10"> */}
-        <ul className="grid gap-12 md:gap-0 mt-20 mb-20 ml-20 mr-4 justify-center pb-10 
+        <ul className="grid gap-12 md:gap-0 mt-20 mb-20 ml-10 md:ml-20 mr-4 justify-center pb-10 
                      grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> 
         <li className="store-card">
             <img

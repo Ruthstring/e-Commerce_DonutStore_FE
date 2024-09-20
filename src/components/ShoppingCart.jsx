@@ -84,7 +84,7 @@ const ShoppingCart = () => {
           <>
             {/* First row: Cart items and order summary */}
             <div className="title-container ">
-            <h2 className="text-black title">Your Cart</h2>
+            <h2 className="text-black title lilitafont ">Your Cart</h2>
             </div>
             <div className="whole-cart flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-0 justify-center items-center md:mr-20 ml-4 md:ml-0">
             
@@ -96,8 +96,8 @@ const ShoppingCart = () => {
                     <p>Your cart is empty</p>
                   ) : (
                     cart.map(item => (
-                      <div className="li-items-container ">
-                      <li key={item.productId._id} className="flex justify-between items-center mb-4 p-4">
+                      <div className="li-items-container md:ml-10  ">
+                      <li key={item.productId._id} className=" flex justify-between items-center mb-4 p-4">
                         <img src={item.productId.imageUrl} alt={item.productId.title} className="w-20 h-20 z-1" />
                         <div>
                           <p className='font-bold text-lg'>{item.productId.title}</p>
@@ -126,8 +126,8 @@ const ShoppingCart = () => {
               </div>
   
               {/* Order summary (1/3 width) */}
-              <div className="order-summary ml-10 md:ml-0 md:w-1/3 self-start  ">
-                <h2 className="text-black">Order Summary</h2>
+              <div className="order-summary ml-4 md:ml-0 md:w-1/3 self-start  ">
+                <h2 className="text-black ">Order Summary</h2>
                 {cart.length === 0 ? (
                   <p>No items in your cart</p>
                 ) : (
@@ -157,7 +157,7 @@ const ShoppingCart = () => {
   
             {/* Second row: Recommendations (full width) */}
             {cart.length > 0 && (
-              <div className="w-full mt-8 flex-col  md:ml-36">
+              <div className="w-full mt-8 flex-col  ">
                 <Recommendations cartItems={cart} />
               </div>
             )}

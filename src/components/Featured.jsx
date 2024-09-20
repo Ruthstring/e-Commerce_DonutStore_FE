@@ -55,19 +55,6 @@ const Featured = () => {
     };
 
 
-    // const handleAddToCart = (product) => {
-    //     if (!token) {
-    //         // If the user is not logged in, show the modal
-    //         console.log("No token found, showing modal");
-    //         setShowModal(true);
-    //     } else {
-    //         console.log("Adding to cart:", product);
-    //         // Add to cart if the user is logged in
-    //         const { _id, title, price } = product;
-    //         const quantity = 1; // Default to 1 for adding items to the cart
-    //         dispatch(addToCart({ productId: _id, title, price, quantity }));
-    //     }
-    // };
 
     if (loading) {
         return <p>Loading featured items...</p>;
@@ -80,7 +67,7 @@ const Featured = () => {
     return (
         <div id="featured" className="featuredContainer pt-10">
             <div>
-                <h1 className="title ml-10 md:ml-32 lg:ml-20  " >This week's specials</h1>
+                <h1 className="title md:ml-32 lg:ml-20 lilitafont " >This week's specials</h1>
             </div>
             {showModal && <SessionExpiredModal 
                                             onClose={() => setShowModal(false)} 

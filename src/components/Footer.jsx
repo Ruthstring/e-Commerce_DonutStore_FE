@@ -4,18 +4,23 @@ import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   return (
-    <footer id="footer" className="bg-gray-800 text-white p-10 flex text-left">
-      <div className="flex-1">
-        <h1 className="footer-title mt-7 ml-6 text-5xl">What's next?</h1>
+    <footer id="footer" className="bg-gray-800 text-white  p-10 flex flex-col md:flex-row text-left">
+      {/* First Section */}
+      <div className="flex-1 mb-8 md:mb-0">
+        <h1 className="footer-title mt-7 text-3xl md:text-5xl md:ml-10 lilitafont">What's next?</h1>
       </div>
-      <div className="container flex-1 text-left ml-20">
-        <h1>About me</h1>
-        <p className="mt-2">This App was built at the beginning<br></br> of my Web Dev journey.</p>
+
+      {/* Second Section */}
+      <div className="flex-1 mb-8 md:mb-0">
+        <h1 className='font-bold text-lg' >About me</h1>
+        <p className="mt-2">This App was built at the beginning<br /> of my Web Dev journey.</p>
         <p>Working with passion. Learning fast.</p>
         <p className="mt-12 mb-4">&copy; 2024 My Website. All rights reserved.</p>
       </div>
-      <div className="flex-1 mr-10 ml-10 text-left">
-        <h1>Contact</h1>
+
+      {/* Third Section */}
+      <div className="flex-1">
+        <h1 className='font-bold text-lg'>Contact</h1>
         <p>Do you want to know more?</p>
         <div className="flex space-x-4 mt-6 mb-8">
           <a 
@@ -38,6 +43,7 @@ const Footer = () => {
       </div>
     </footer>
   );
+
 };
 
 export default Footer;

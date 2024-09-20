@@ -45,7 +45,7 @@ const Register = () => {
         />
       </div> */}
       <div className="register-form">
-        <h2>Register</h2>
+        <h2 className="lilitafont title">Register</h2>
         {isRegistered ? (
           <div>
             <p>Great! Registration completed.</p>
