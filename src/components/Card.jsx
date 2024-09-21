@@ -18,13 +18,24 @@ const Card = ({ productId, title, price, description, imageUrl }) => {
   };
 
   // Function to handle adding the product to the cart
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    const button = e.target; // Get the button that was clicked(for bubble animation)
+
     if (!token) {
       // If the user is not logged in, show the modal
       setShowModal(true);
     } else {
       console.log("Adding to cart:", { productId, title, price, quantity: 1 }); // Log product details
       dispatch(addToCart({ productId, title, price, quantity: 1 })); // Dispatch the action to add this product to the cart with default quantity of 1
+    
+    // Add the 'animate' class to trigger the animation
+    button.classList.add('animate');
+    
+    // Remove the 'animate' class after the animation ends
+    setTimeout(() => {
+      button.classList.remove('animate');
+    }, 600); // Match the animation duration (0.6s)
+    
     }
   };
 
@@ -49,7 +60,7 @@ const Card = ({ productId, title, price, description, imageUrl }) => {
               className="text-blue-500 hover:text-blue-700 ml-3 self-start"
               
             >
-              <FontAwesomeIcon icon={faInfoCircle} size="xl" />
+              <FontAwesomeIcon icon={faInfoCircle} size="xl" className="faInfo"/>
             </button>
             </div>
             {/* Add to Cart Button */}

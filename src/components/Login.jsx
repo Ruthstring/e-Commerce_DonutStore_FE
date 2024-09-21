@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/auth/authSlice';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import LoginDonut from "../assets/LoginDonut.png";
+import LoginDonut from "../assets/LoginDonut2.png";
 
 const Login = () => {
   const [email, setEmail] = useState('');

@@ -71,8 +71,8 @@ const Menu = () => {
 
             {/* Breadcrumb */}
             <div className="mb-4 flex items-center ml-12">
-                <span className="text-gray-500">Home / </span>
-                <span className="text-gray-900">{searchTerm || 'All Menu'}</span>
+                <span className="text-gray-500 text-xl">Home / </span>
+                <span className="text-gray-900 text-xl">{searchTerm || 'All Menu'}</span>
             </div>
 
             {/* Category Buttons */}
