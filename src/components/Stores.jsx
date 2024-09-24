@@ -8,7 +8,7 @@ const Stores=()=>{
      <div id="stores">
         <h1 className="title md:ml-32 lg:ml-20 pt-10 lilitafont ">Our stores</h1>
         {/* <ul className="flex gap-8 mt-20 mb-20 ml-4 mr-4 justify-center pb-10"> */}
-        <ul className="grid gap-12 md:gap-0 mt-20 mb-20 ml-10 md:ml-20 mr-4 justify-center pb-10 
+        <ul className="grid gap-12 md:gap-0 mt-10 mb-20 ml-10 md:ml-20 mr-4 justify-center pb-10 
                      grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> 
         <li className="store-card">
             <img
@@ -22,8 +22,7 @@ const Stores=()=>{
                 <div className="store-card__content--container | flow">
                 <h2 className="store-card__title">Berlin</h2>
                 <p className="store-card__description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
-                    labore laudantium deserunt fugiat numquam.
+                    Bright and trendy location with plenty of sitting options. Have a break with us after a long day. You deserve it! Adapted to whelchairs.
                 </p>
                 </div>
                 <div className="mb-10">

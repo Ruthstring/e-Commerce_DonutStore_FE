@@ -122,6 +122,8 @@ html,body{
   font-family: "Lilita One";
 }
 
+
+
  /*FEATURED*/
 
  .featuredContainer{
@@ -661,11 +663,9 @@ h2 {
 
 
 /*SHOPPING CART*/
-.whole-cart{
- 
-}
+
 .title-container{
-  margin:0px 0px 50px 0px;
+  margin:0px 0px 30px 0px;
   align-self: center;
 }
 .cart-items{

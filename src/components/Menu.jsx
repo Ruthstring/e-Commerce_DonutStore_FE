@@ -66,7 +66,7 @@ const Menu = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold mb-6 lilitafont title">Our Menu</h1>
+            <h1 className="text-3xl font-bold mb-6 mt-16 lilitafont title">Our Menu</h1>
             
 
             {/* Breadcrumb */}

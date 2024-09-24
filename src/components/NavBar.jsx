@@ -55,12 +55,15 @@ const NavBar = () => {
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-8 mr-8">
-            <li className="menu-item">
-              <Link to="/menu" className="text-gray-800 hover:text-gray-400 text-xl">
-                Menu
-              </Link>
-            </li>
-            <li className="menu-item">
+            {/* Conditionally hide the "Menu" link if already on the Menu page */}
+            {location.pathname !== '/menu' && (
+              <li className="menu-item">
+                <Link to="/menu" className="text-gray-800 hover:text-gray-400 text-xl">
+                  Menu
+                </Link>
+              </li>
+            )}
+            <li className="menu-item hidden lg:block">
               <HashLink smooth to="/#stores" className="text-gray-800 hover:text-gray-400 text-xl">
                 Stores
               </HashLink>
@@ -113,11 +116,14 @@ const NavBar = () => {
       {isMenuOpen && (
         <div className="md:hidden mt-4 space-y-4">
           <ul className="text-gray-800">
-            <li>
-              <Link to="/menu" className="block hover:text-gray-400">
-                Menu
-              </Link>
-            </li>
+            {/* Conditionally hide the "Menu" link if already on the Menu page */}
+            {location.pathname !== '/menu' && (
+              <li>
+                <Link to="/menu" className="block hover:text-gray-400">
+                  Menu
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/stores" className="block hover:text-gray-400">
                 Stores

@@ -126,17 +126,17 @@ const ShoppingCart = () => {
               </div>
   
               {/* Order summary (1/3 width) */}
-              <div className="order-summary ml-4 md:ml-0 md:w-1/3 self-start  ">
+              <div className="order-summary md:ml-0 md:w-1/3 self-start  ">
                 <h2 className="text-black ">Order Summary</h2>
                 {cart.length === 0 ? (
                   <p>No items in your cart</p>
                 ) : (
                   <>
-                    <ul className="pl-5 pr-5 pt-3">
+                    <ul className="pl-5 pr-5 pt-3 text-start">
                       {cart.map(item => (
                         <li key={item.productId._id} className="flex justify-between mb-2">
                           <span className="text-lg">{item.productId.title} x {item.quantity}</span>
-                          <span className="text-lg">${(item.productId.price * item.quantity).toFixed(2)}</span>
+                          <span className="text-lg"> ${(item.productId.price * item.quantity).toFixed(2)}</span>
                         </li>
                       ))}
                     </ul>
@@ -169,106 +169,7 @@ const ShoppingCart = () => {
       </div>
     );
 
-    // return (
-
-    //     <div className="shopping-cart-container ">
-    //   {/* Show a custom message if the user is not logged in */}
-    //   {!user ? (
-        
-        
-    //     <div className="not-logged-in-message flex ml-4 md:ml-12 mb-20">
-    //       <div className='flex-col ml-0 md:ml-8'>
-    //       <h2 className='text-blue-900 text-2xl self-start'>Feeling like a donut?</h2>
-    //       <p className="mt-2 mb-10 self-start ">Login to access your personal cart.</p>
-    //       <button onClick={handleLogin} className="button">
-    //         Login
-    //       </button>
-    //       </div>
-    //       <div>
-    //       <img src={ImageTower} className='imageTower'/>
-          
-    //       </div>
-    //     </div>
-       
-    //   ) : (
-    //     <>
-    //       {/* Show cart items if the user is logged in */}
-    //       <div className="flex">
-    //       <div className="cart-items flex ">
-    //       <div className=" ">
-    //         <h2 className="text-black">Your Cart</h2>
-    //         <ul>
-    //           {cart.length === 0 ? (
-    //             <p>Your cart is empty</p>
-    //           ) : (
-    //             cart.map(item => (
-    //               <li key={item.productId._id} className="flex justify-between items-center">
-    //                 <img src={item.productId.imageUrl} alt={item.productId.title} className="w-16 h-16" />
-    //                 <div>
-    //                   <p>{item.productId.title}</p>
-    //                   <p>${item.productId.price.toFixed(2)}</p>
-    //                 </div>
-    //                 <select
-    //                   value={item.quantity}
-    //                   onChange={e => handleQuantityChange(item.productId._id, parseInt(e.target.value))}
-    //                 >
-    //                   {[1, 2, 3, 4, 5].map(qty => (
-    //                     <option key={qty} value={qty}>{qty}</option>
-    //                   ))}
-    //                 </select>
-    //                 <button 
-    //                   onClick={() => handleRemoveItem(item.productId._id)} 
-    //                   className="bg-red-500 text-white p-1 rounded ml-4"
-    //                 >
-    //                   Remove
-    //                 </button>
-    //               </li>
-    //             ))
-    //           )}
-    //         </ul>
-    //         </div>
-    //       </div>
-
-    //       <div className="order-summary w-1/3 p-4">
-    //         <h2 className='text-black'>Order Summary</h2>
-    //         {cart.length === 0 ? (
-    //           <p>No items to summarize</p>
-    //         ) : (
-    //           <>
-    //             <ul>
-    //               {cart.map(item => (
-    //                 <li key={item.productId._id} className="flex justify-between">
-    //                   <span>{item.productId.title}</span>
-    //                   <span>${(item.productId.price * item.quantity).toFixed(2)}</span>
-    //                 </li>
-    //               ))}
-    //             </ul>
-    //             <div className="flex justify-between">
-    //               <span>Total</span>
-    //               <span>${totalAmount.toFixed(2)}</span>
-    //             </div>
-    //             <button onClick={handleCheckout} className="bg-blue-500 text-white p-2 rounded">
-    //               Checkout
-    //             </button>
-    //           </>
-    //         )}
-    //       </div>
-    //       </div>
-    //     </>
-    //   )}
-
-    //   {/* Session Expired Modal */}
-    //   {sessionExpired && <SessionExpiredModal onClose={() => navigate('/login')} />}
-
-    // {/* Recommendation Section */}
-    // {cart.length > 0 && (
-    //     <Recommendations cartItems={cart} />
-    //  )}
-
-
-    // </div>
-
-    // );
+   
 };
 
 export default ShoppingCart;
