@@ -37,16 +37,6 @@ const Recommendations = ({ cartItems }) => {
 
 
 
-     // Handle adding recommended item to the cart
-    //  const handleAddToCart = (product) => {
-    //     const { _id, title, price } = product;
-    //     const quantity = 1; // Default to 1 for adding recommendations to the cart
-    //     dispatch(addToCart({ productId: _id, title, price, quantity }));
-
-    //      // After adding to cart, re-fetch the updated cart items
-    //      dispatch(getCart());
-    // };
-
     if (loading) {
         return <p>Loading recommendations...</p>;
     }

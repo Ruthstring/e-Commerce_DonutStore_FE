@@ -9,7 +9,7 @@ const Menu = () => {
     const [filteredItems, setFilteredItems] = useState([]);  // State to hold the filtered items
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/menu")
+        fetch(`${process.env.REACT_APP_API_URL}/api/menu`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok");

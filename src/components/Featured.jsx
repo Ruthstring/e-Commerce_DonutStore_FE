@@ -20,7 +20,7 @@ const Featured = () => {
         // Fetch 3 menu items from the backend
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/featured');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/featured`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch featured items');
                 }
@@ -94,107 +94,3 @@ const Featured = () => {
 
 export default Featured;
 
-// import React, { useEffect, useState } from 'react';
-// import Card from './Card';
-
-// const Featured = () => {
-//     const [cardsData, setCardsData] = useState([]);
-//     const [loading, setLoading] = useState(true);
-//     const [error, setError] = useState(null);
-
-//     useEffect(() => {
-//         // Fetch 3 menu items from the backend
-//         const fetchData = async () => {
-//             try {
-//                 const response = await fetch('http://localhost:5000/api/featured'); // Backend API
-//                 if (!response.ok) {
-//                     throw new Error('Failed to fetch featured items');
-//                 }
-//                 const data = await response.json();
-//                 setCardsData(data); // Store the 3 menu items in the state
-//             } catch (error) {
-//                 setError(error.message);
-//             } finally {
-//                 setLoading(false);
-//             }
-//         };
-
-//         fetchData();
-//     }, []);
-
-//     if (loading) {
-//         return <p>Loading featured items...</p>;
-//     }
-
-//     if (error) {
-//         return <p>Error loading featured items: {error}</p>;
-//     }
-
-//     return (
-//         <div id="featured" className="featuredContainer p-20">
-//             <div className="flex flex-wrap justify-center">
-//                 {cardsData.map((card) => (
-//                     <Card
-//                         key={card._id} // Assuming the _id from MongoDB is the unique identifier
-//                         title={card.title}
-//                         description={card.description}
-//                         imageUrl={card.imageUrl}
-//                         productId={card._id} // Pass productId to the card for "Add to Cart"
-//                         price={card.price}
-//                     />
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default Featured;
-
-
-// import React, { useEffect, useState } from 'react';
-// import Card from "./Card";
-// import ChocoDonut from "../assets/choco_donut.png"
-
-// //fetching 3 random items for now. future implementation of isFeatured flag or most recent items by timestamp in mongo
-
-// const Featured = () => {
-//     // Mock data for demonstration purposes
-//     const mockCardsData = [
-//       {
-//         id: 1,
-//         title: 'Chocolate Vegan Donut',
-//         description: 'Delicious chocolate glazed vegan donut with sprinkles.',
-//         imageUrl: ChocoDonut, 
-//       },
-//       {
-//         id: 2,
-//         title: 'Glazed Strawberry Donut',
-//         description: 'Sweet and tangy strawberry glazed vegan donut.',
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//       },
-//       {
-//         id: 3,
-//         title: 'Classic Vegan Donut',
-//         description: 'Simple and classic vegan donut, perfect with coffee.',
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//       },
-//     ];
-  
-//     return (
-//       <div id="featured" className="featuredContainer p-20 ">
-//         <div className="flex flex-wrap justify-center">
-//           {mockCardsData.map((card) => (
-            
-//             <Card
-//               key={card.id}
-//               title={card.title}
-//               description={card.description}
-//               imageUrl={card.imageUrl}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     );
-//   };
-  
-//   export default Featured;
