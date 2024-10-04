@@ -6,7 +6,7 @@ import { logout } from '../authSlice';
 // Add product to cart
 export const addToCart = createAsyncThunk('cart/addToCart', async (product, { getState }) => {
   const token = getState().auth.token;
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/add`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/add`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const addToCart = createAsyncThunk('cart/addToCart', async (product, { ge
 // Update cart item quantity
 export const updateQuantity = createAsyncThunk('cart/updateQuantity', async ({ productId, quantity }, { getState }) => {
   const token = getState().auth.token;
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/update-quantity`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/update-quantity`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const updateQuantity = createAsyncThunk('cart/updateQuantity', async ({ p
 // Checkout action
 export const checkout = createAsyncThunk('cart/checkout', async (_, { getState }) => {
   const token = getState().auth.token;
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/checkout`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/checkout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export const checkout = createAsyncThunk('cart/checkout', async (_, { getState }
 // Fetch cart items
 export const getCart = createAsyncThunk('cart/getCart', async (_, { getState, rejectWithValue,dispatch }) => {
   const token = getState().auth.token;
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ export const getCart = createAsyncThunk('cart/getCart', async (_, { getState, re
 // Remove item from cart
 export const removeFromCart = createAsyncThunk('cart/removeFromCart', async (productId, { getState }) => {
   const token = getState().auth.token;
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart/remove`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/remove`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

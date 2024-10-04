@@ -20,7 +20,8 @@ const Featured = () => {
         // Fetch 3 menu items from the backend
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/featured`);
+                console.log(import.meta.env.VITE_API_URL);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/featured`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch featured items');
                 }

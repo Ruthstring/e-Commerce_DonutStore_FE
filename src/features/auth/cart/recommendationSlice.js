@@ -7,7 +7,7 @@ export const fetchRecommendations = createAsyncThunk(
         const token = getState().auth.token;
 
         // Extract product IDs from cartItems and send them to the backend
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/recommendations`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/recommendations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
